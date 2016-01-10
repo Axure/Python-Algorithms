@@ -1,7 +1,7 @@
 import networkx as nx
 from networkx_viewer import Viewer
 import pygraphviz as pgv
-
+import tokenize
 
 class matrix:
     def __init__(self, dimension: int):
