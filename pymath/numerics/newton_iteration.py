@@ -1,5 +1,5 @@
 __author__ = 'zhenghu'
-from types import Function
+from pymath.types import Function
 
 def newton_iteration(f: Function):
     if isinstance(f, Function):
