@@ -1,7 +1,7 @@
 from typing import *
 import typing
 from pyalgo.sort import selection_sort
-from typings import type_check
+from systems import type_check
 
 
 @type_check

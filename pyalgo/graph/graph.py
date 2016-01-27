@@ -1,6 +1,6 @@
 from typing import *
 import typing
-from typings import type_check
+from systems import type_check
 
 # TODO: automatically enlarge the matrix space.
 class Graph:
