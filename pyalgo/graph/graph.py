@@ -21,6 +21,17 @@ class Graph:
             self.nodes[name] = size
             self.nodes_name.append(name)
 
+    def size(self):
+        return len(self.nodes)
+
+    def pop_edge(self):
+        top_edge = self.get_top_edge()
+        self.edges_reverse.pop()
+        self.edges[top_edge] = 0
+
+    def get_top_edge(self):
+        return self.edges_reverse.top()
+
     # @type_check
     def get_node_index(self, name: str):
         return self.nodes[name]
@@ -33,6 +44,9 @@ class Graph:
         node_b = self.get_node_index(name_b)
         self.edges[(node_a, node_b)] = weight
         self.edges_reverse.push((node_a, node_b))
+
+    def get_edge_from_pair(self, pair):
+        return self.edges[pair]
 
     def get_edge(self, name_a: str, name_b: str) -> float:
         node_a = self.get_node_index(name_a)

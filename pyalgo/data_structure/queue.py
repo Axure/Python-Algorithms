@@ -14,6 +14,7 @@ class PriorityQueue:
         while index > 0:
             # if self.elements[index] < self.elements[index // 2]:
             if self.comparator(self.elements[index], self.elements[(index - 1) // 2]):
+                # TODO: How to find such kind of problematic code effectively and exhaustively? By coverage test?
                 self.elements[index], self.elements[(index - 1) // 2] = \
                     self.elements[(index - 1) // 2], self.elements[index]
             index //= 2
