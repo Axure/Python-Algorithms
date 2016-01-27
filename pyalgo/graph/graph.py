@@ -1,6 +1,7 @@
 from typing import *
 import typing
 from systems import type_check
+from pyalgo.data_structure.queue import PriorityQueue
 
 # TODO: automatically enlarge the matrix space.
 class Graph:
@@ -8,6 +9,7 @@ class Graph:
         self.nodes = {}
         self.nodes_name = []
         self.edges = {}
+        self.edges_reverse = PriorityQueue()
         # for row in len():
         #     for column in row:
         #         if column

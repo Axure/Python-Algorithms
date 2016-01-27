@@ -4,14 +4,16 @@ class Queue:
 
 
 class PriorityQueue:
-    def __init__(self):
+    def __init__(self, comparator):
         self.elements = []
+        self.comparator = comparator
 
     def push(self, element):
         index = len(self.elements)
         self.elements.append(element)
         while index > 0:
-            if self.elements[index] < self.elements[index // 2]:
+            # if self.elements[index] < self.elements[index // 2]:
+            if self.comparator(self.elements[index], self.elements[index // 2]):
                 self.elements[index], self.elements[index // 2] = \
                     self.elements[index // 2], self.elements[index]
             index //= 2
@@ -26,18 +28,18 @@ class PriorityQueue:
             left = index * 2 + 1
             right = index * 2 + 2
             smallest = index
-            if self.elements[left] < self.elements[smallest]:
+            # if self.elements[left] < self.elements[smallest]:
+            if self.comparator(self.elements[left], self.elements[smallest]):
                 smallest = left
-            if right <= size - 1 and self.elements[right] < self.elements[smallest]:
+            if right <= size - 1 and self.comparator(self.elements[right], self.elements[smallest]):
+                # if right <= size - 1 and self.elements[right] < self.elements[smallest]:
                 smallest = right
             if smallest != index:
-                self.elements[smallest], self.elements[index] =\
+                self.elements[smallest], self.elements[index] = \
                     self.elements[index], self.elements[smallest]
             else:
                 break
             index = smallest
-
-
 
     def top(self):
         return self.elements[0]
@@ -64,7 +66,7 @@ class PriorityQueue:
 
 
 if __name__ == '__main__':
-    priority_queue = PriorityQueue()
+    priority_queue = PriorityQueue(lambda x_, y_: x_ < y_)
     priority_queue.push(10)
     priority_queue.push(9)
     priority_queue.push(1)
@@ -80,3 +82,5 @@ if __name__ == '__main__':
     for x in range(0, 8):
         priority_queue.pop()
         print(priority_queue)
+
+    B = PriorityQueue(lambda x: x + 3)
