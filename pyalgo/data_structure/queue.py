@@ -16,17 +16,50 @@ class PriorityQueue:
                     self.elements[index // 2], self.elements[index]
             index //= 2
 
+    def pop(self):
+        size = len(self.elements)
+        self.elements[0] = self.elements[size - 1]
+        size -= 1
+        self.elements.pop()
+        index = 0
+        while index <= size // 2 - 1:
+            left = index * 2 + 1
+            right = index * 2 + 2
+            smallest = index
+            if self.elements[left] < self.elements[smallest]:
+                smallest = left
+            if right <= size - 1 and self.elements[right] < self.elements[smallest]:
+                smallest = right
+            if smallest != index:
+                self.elements[smallest], self.elements[index] =\
+                    self.elements[index], self.elements[smallest]
+            else:
+                break
+            index = smallest
+
+
+
+    def top(self):
+        return self.elements[0]
+
+    def make(self, elements: list):
+        return 0
+
     def __repr__(self):
         size = len(self.elements)
         width = 1
         result = ''
-        while width <= size // 2 + 1:
+        while 2 * width - 1 <= size:
             for i in range(0, width):
-                if width - 1 + i >= size:
-                    break
+                # print('current: ', size, width, i)
+                # if width - 1 + i >= size:
+                #     break
                 result += str(self.elements[width - 1 + i]) + ', '
             result += '\n'
             width *= 2
+        for i in range(0, size - width + 1):
+            result += str(self.elements[width - 1 + i]) + ', '
+        result += '\n'
         return result
 
 
@@ -43,3 +76,7 @@ if __name__ == '__main__':
     priority_queue.push(5)
     priority_queue.push(4)
     print(priority_queue)
+
+    for x in range(0, 8):
+        priority_queue.pop()
+        print(priority_queue)
