@@ -9,7 +9,7 @@ class Graph:
         self.nodes = {}
         self.nodes_name = []
         self.edges = {}
-        self.edges_reverse = PriorityQueue()
+        self.edges_reverse = PriorityQueue(lambda x_, y_: self.edges[x_] < self.edges[y_])
         # for row in len():
         #     for column in row:
         #         if column
@@ -32,6 +32,7 @@ class Graph:
         node_a = self.get_node_index(name_a)
         node_b = self.get_node_index(name_b)
         self.edges[(node_a, node_b)] = weight
+        self.edges_reverse.push((node_a, node_b))
 
     def get_edge(self, name_a: str, name_b: str) -> float:
         node_a = self.get_node_index(name_a)
@@ -78,7 +79,12 @@ if __name__ == '__main__':
     graph = Graph([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
     graph.add_node("A")
     graph.add_node("B")
-    graph.add_edge("A", "B", 1)
+    graph.add_node("C")
+    graph.add_edge("A", "A", 1)
+    graph.add_edge("A", "B", 4)
+    graph.add_edge("B", "B", 3)
+    graph.add_edge("B", "A", 2)
     print(graph)
     print(graph[1])
     print(graph[1, 0])
+    print(graph.edges_reverse)

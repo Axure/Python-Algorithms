@@ -13,9 +13,9 @@ class PriorityQueue:
         self.elements.append(element)
         while index > 0:
             # if self.elements[index] < self.elements[index // 2]:
-            if self.comparator(self.elements[index], self.elements[index // 2]):
-                self.elements[index], self.elements[index // 2] = \
-                    self.elements[index // 2], self.elements[index]
+            if self.comparator(self.elements[index], self.elements[(index - 1) // 2]):
+                self.elements[index], self.elements[(index - 1) // 2] = \
+                    self.elements[(index - 1) // 2], self.elements[index]
             index //= 2
 
     def pop(self):
@@ -84,3 +84,13 @@ if __name__ == '__main__':
         print(priority_queue)
 
     B = PriorityQueue(lambda x: x + 3)
+
+    C = PriorityQueue(lambda x_, y_: x_ < y_)
+    C.push(1)
+    print(C)
+    C.push(4)
+    print(C)
+    C.push(3)
+    print(C)
+    C.push(2)
+    print(C)
