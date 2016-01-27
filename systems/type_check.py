@@ -1,7 +1,7 @@
 from typing import *
 import typing
 
-def type_check(func):
+def type_checked(func):
     def func_wrapper(*args, **kwargs):
         print(typing.get_type_hints(func))
 

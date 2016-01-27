@@ -4,14 +4,14 @@ from pyalgo.sort import selection_sort
 from systems import type_check
 
 
-@type_check
+@type_check.type_checked
 def quick_sort(a: list) -> list:
     j = 3
     for i in a:
         print(i)
     return a
 
-@type_check
+@type_check.type_checked
 def median_of_three(za: list, l: int, r: int) -> list:
     print(za, l, r)
     return za
